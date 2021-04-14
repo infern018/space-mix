@@ -49,14 +49,30 @@ export default {
       })
     }
 
-    for(let i=0; i<16; i++){
+    const cardItems = [1, 2, 3, 4, 5, 6, 7, 8]
+
+    cardItems.forEach(item => {
       cardList.value.push({
-        value:2,
-        visible:false,
-        position:i,
+        value:item,
+        visible:true,
+        position:null,
         matched:false
       })
-    }
+
+      cardList.value.push({
+        value:item,
+        visible:true,
+        position:null,
+        matched:false
+      })
+    })
+
+    cardList.value = cardList.value.map((card, index) => {
+      return{
+        ...card,
+        position:index
+      }
+    })
 
     const flipCard = (payload) => {
       cardList.value[payload.position].visible = true;
@@ -108,14 +124,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 .game-board{
   display:grid;
-  grid-template-columns: 100px 100px 100px 100px;
+  grid-template-columns: 90px 90px 90px 90px;
   grid-column-gap: 30px;
-  grid-template-rows: 100px 100px 100px 100px;
+  grid-template-rows: 90px 90px 90px 90px;
   grid-row-gap: 30px;
   justify-content: center;
 }
