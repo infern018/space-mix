@@ -253,11 +253,10 @@ h1 span{
 
 @media screen and (max-width: 480px) {
     .game-board{
-      grid-template-columns: repeat(4, 70px);
-      grid-column-gap: 18px;
-      grid-template-rows: repeat(4, 70px);
-      grid-row-gap: 18px;
-      justify-content: center;
+      grid-template-columns: repeat(4, 55px);
+      grid-column-gap: 13px;
+      grid-template-rows: repeat(4, 55px);
+      grid-row-gap: 13px;
   }
 }
 

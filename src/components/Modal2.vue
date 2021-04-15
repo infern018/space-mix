@@ -72,6 +72,10 @@ export default {
 }
 
 @media screen and (max-width: 480px) {
+    .modal2{
+      padding-top: 120px;
+    }
+
     .modal2-content{
         padding:10px;
         font-size: 12px;

@@ -107,8 +107,8 @@ export default {
 
 @media screen and (max-width: 480px) {
     .card-img{
-        width: 60px;
-        height: 60px;
+        width: 48px;
+        height:48px;
     }
 }
 

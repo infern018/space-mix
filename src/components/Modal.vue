@@ -70,10 +70,14 @@ export default {
 }
 
 @media screen and (max-width: 600px) {
+    .modal{
+      padding-top:180px;
+    }
+
     .modal-content{
         padding:10px;
         font-size: 15px;
-        width: 40%;
+        width: 50%;
     }
 }
 
