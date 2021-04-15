@@ -1,11 +1,11 @@
 <template>
   <h1> <span>SPACE MIX</span> </h1>
-  <section class="game-board">
-    <Card v-for="(card, index) in cardList" :key="`card-${index}`" :value="card.value" :visible="card.visible" :position="card.position" :matched="card.matched" @select-card="flipCard"/>
-  </section>
+  <transition-group class="game-board" tag="section" name="shuffle-card">
+    <Card v-for="card in cardList" :key="`${card.value}-${card.variant}`" :value="card.value" :visible="card.visible" :position="card.position" :matched="card.matched" @select-card="flipCard"/>
+  </transition-group>
   <!-- <h2> {{ status }} - {{ score }} </h2> -->
   <!-- <button @click="restartGame">Restart</button> -->
-  <a href="#0" class="bar-anchor" @click="restartGame">
+  <a href="#" class="bar-anchor" @click="restartGame">
      <span>Restart</span>
   <div class="transition-bar"></div>
   </a>
@@ -37,12 +37,8 @@ export default {
       return remainingCards/2
     })
 
-    const shuffleCards = () => {
-      cardList.value = _.shuffle(cardList.value)
-    }
-
     const restartGame = () => {
-      shuffleCards()
+      cardList.value = _.shuffle(cardList.value)
 
       cardList.value = cardList.value.map((card, index) => {
         return{
@@ -68,6 +64,7 @@ export default {
     cardItems.forEach(item => {
       cardList.value.push({
         value:item,
+        variant:1,
         visible:false,
         position:null,
         matched:false
@@ -75,6 +72,7 @@ export default {
 
       cardList.value.push({
         value:item,
+        variant:2,
         visible:false,
         position:null,
         matched:false
@@ -130,7 +128,6 @@ export default {
       userSelection,
       status,
       remainingPairs,
-      shuffleCards,
       restartGame,
       score
     }
@@ -223,6 +220,10 @@ h1 span{
   -o-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
   -webkit-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
   transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.shuffle-card-move{
+  transition: transform 0.8s ease-in;
 }
 
 </style>
