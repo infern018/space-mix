@@ -6,7 +6,7 @@
         <!-- Modal content -->
         <div class="modal2-content">
             <span class="close" @click="handleClickBtn">&times;</span>
-            <p>A card matching game made in Vue-3, each card has its similar pair that can be revealed by clicking on it, go ahead click "START" and see in how many least clicks you can reveal them all! :)</p>
+            <p>A card matching game made in Vue-3, each card has its similar pair that can be revealed by clicking on it, go ahead, click "START" and see in how many least clicks you can reveal them all! :)</p>
         </div>
 
     </div>
@@ -70,5 +70,16 @@ export default {
   text-decoration: none;
   cursor: pointer;
 }
+
+@media screen and (max-width: 480px) {
+    .modal2-content{
+        padding:10px;
+        font-size: 12px;
+        width: 60%;
+        line-height: 20px;
+        word-spacing: 0.2em;
+    }
+}
+
 
 </style>

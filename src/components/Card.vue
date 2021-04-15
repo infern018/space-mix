@@ -105,4 +105,11 @@ export default {
     bottom:3px;
 }
 
+@media screen and (max-width: 480px) {
+    .card-img{
+        width: 60px;
+        height: 60px;
+    }
+}
+
 </style>
