@@ -1,10 +1,14 @@
 <template>
-  <h1>Flip 'em!</h1>
+  <h1> <span>SPACE MIX</span> </h1>
   <section class="game-board">
     <Card v-for="(card, index) in cardList" :key="`card-${index}`" :value="card.value" :visible="card.visible" :position="card.position" :matched="card.matched" @select-card="flipCard"/>
   </section>
-  <h2> {{ status }} </h2>
-  <button @click="restartGame">Restart</button>
+  <!-- <h2> {{ status }} - {{ score }} </h2> -->
+  <!-- <button @click="restartGame">Restart</button> -->
+  <a href="#0" class="bar-anchor" @click="restartGame">
+     <span>Restart</span>
+  <div class="transition-bar"></div>
+  </a>
 </template>
 
 <script>
@@ -18,6 +22,7 @@ export default {
   setup(){
     const cardList = ref([])
     const userSelection = ref([])
+    const score = ref(0)
 
     const status = computed(() => {
       if(remainingPairs.value === 0){
@@ -49,7 +54,16 @@ export default {
       })
     }
 
-    const cardItems = [1, 2, 3, 4, 5, 6, 7, 8]
+    const cardItems = [
+      '005-comet',
+      '008-earth',
+      '029-space-shuttle',
+      '006-constellations',
+      '004-telescope',
+      '007-crescent-moon',
+      '034-ufo',
+      '015-lunar-1'
+      ]
 
     cardItems.forEach(item => {
       cardList.value.push({
@@ -75,6 +89,8 @@ export default {
     })
 
     const flipCard = (payload) => {
+
+      score.value+=1
       cardList.value[payload.position].visible = true;
 
       if(userSelection.value[0]){
@@ -103,10 +119,8 @@ export default {
           }, 2000)
           
         }
-
-        
         userSelection.value.length = 0
-      } 
+      }
     },
     { deep: true })
 
@@ -117,29 +131,98 @@ export default {
       status,
       remainingPairs,
       shuffleCards,
-      restartGame
+      restartGame,
+      score
     }
   }
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+body{
+  margin:0;
+  padding: 0;
+  /* background: linear-gradient(to right, #000428, #004e92); */
+  background-image: url('../public/images/bg2.jpg');
+  background-size: cover;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  color: whitesmoke;
+}
+
+h1{
+  font-family: 'Zen Dots', cursive;
+}
+
+h1 span{
+  background-color: rgb(4, 15, 41);
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 10px 20px;
 }
 
 .game-board{
   display:grid;
-  grid-template-columns: 90px 90px 90px 90px;
-  grid-column-gap: 30px;
-  grid-template-rows: 90px 90px 90px 90px;
-  grid-row-gap: 30px;
+  grid-template-columns: repeat(4, 100px);
+  grid-column-gap: 24px;
+  grid-template-rows: repeat(4, 100px);
+  grid-row-gap: 24px;
   justify-content: center;
 }
 
+.bar-anchor{
+  padding: 20px 10px;
+  margin:10px 4px;
+  color: #fff;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  display:inline-block;
+   overflow:hidden;
+/*    border:1px solid #6098FF; */
+}
+.bar-anchor span{
+  background:rgba(0, 0, 46, 0.8);
+  width:100%;
+  position:relative;
+  padding:10px 70px;
+   -moz-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+/*   border:1px solid #6098FF;  */
+}
+.transition-bar{
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 0;
+    height: 100%;
+    background: #80ffd3;
+    z-index:-1;
+/*     -ms-transform: skewX(-20deg); 
+    -webkit-transform: skewX(-20deg); 
+    transform: skewX(-20deg); */
+}
+
+.bar-anchor:hover .transition-bar{
+  width:120%;
+  left:110%;
+  -moz-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+}
 
 </style>
