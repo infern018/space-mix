@@ -1,4 +1,6 @@
 <template>
+  <Modal  v-if="remainingPairs===0" :score="score"/>
+  <Modal2 v-if="newPlayer"/>
   <h1> <span>SPACE MIX</span> </h1>
   <transition-group class="game-board" tag="section" name="shuffle-card">
     <Card v-for="card in cardList" :key="`${card.value}-${card.variant}`" :value="card.value" :visible="card.visible" :position="card.position" :matched="card.matched" @select-card="flipCard"/>
@@ -19,11 +21,13 @@
 import _ from 'lodash'
 import { computed, ref, watch } from 'vue'
 import Card from './components/Card'
+import Modal from './components/Modal'
+import Modal2 from './components/Modal2'
 import { launchConfetti } from './utilties/confetti'
 
 export default {
   name: 'App',
-  components:{Card},
+  components:{Card, Modal, Modal2},
   setup(){
     const cardList = ref([])
     const userSelection = ref([])
@@ -132,7 +136,7 @@ export default {
           setTimeout(() => {
             cardList.value[cardOne.position].visible = false;
             cardList.value[cardTwo.position].visible = false;
-          }, 1500)
+          }, 1000)
           
         }
         userSelection.value.length = 0
