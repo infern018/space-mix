@@ -3,9 +3,13 @@
   <transition-group class="game-board" tag="section" name="shuffle-card">
     <Card v-for="card in cardList" :key="`${card.value}-${card.variant}`" :value="card.value" :visible="card.visible" :position="card.position" :matched="card.matched" @select-card="flipCard"/>
   </transition-group>
-  <!-- <h2> {{ status }} - {{ score }} </h2> -->
-  <!-- <button @click="restartGame">Restart</button> -->
-  <a href="#" class="bar-anchor" @click="restartGame">
+
+  <a href="#" class="bar-anchor" @click="startGame" v-if="newPlayer">
+     <span>Start</span>
+  <div class="transition-bar"></div>
+  </a>
+
+  <a href="#" class="bar-anchor" @click="restartGame" v-else>
      <span>Restart</span>
   <div class="transition-bar"></div>
   </a>
@@ -24,6 +28,12 @@ export default {
     const cardList = ref([])
     const userSelection = ref([])
     const score = ref(0)
+    const newPlayer = ref(true)
+
+    const startGame = () => {
+      newPlayer.value = false
+      restartGame()
+    }
 
     const status = computed(() => {
       if(remainingPairs.value === 0){
@@ -74,7 +84,7 @@ export default {
       cardList.value.push({
         value:item,
         variant:2,
-        visible:false,
+        visible:true,
         position:null,
         matched:false
       })
@@ -137,7 +147,9 @@ export default {
       status,
       remainingPairs,
       restartGame,
-      score
+      score,
+      newPlayer,
+      startGame
     }
   }
 }
@@ -168,7 +180,7 @@ h1{
 }
 
 h1 span{
-  background-color: rgb(4, 15, 41);
+  background-color: rgba(4, 15, 41, 0.9);
   border-radius: 10px;
   border-top-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -199,6 +211,7 @@ h1 span{
 }
 .bar-anchor span{
   background:rgba(0, 0, 46, 0.8);
+  border-radius: 10px;
   width:100%;
   position:relative;
   padding:10px 70px;
