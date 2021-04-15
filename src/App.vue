@@ -116,7 +116,7 @@ export default {
           setTimeout(() => {
             cardList.value[cardOne.position].visible = false;
             cardList.value[cardTwo.position].visible = false;
-          }, 2000)
+          }, 1500)
           
         }
         userSelection.value.length = 0
@@ -183,7 +183,7 @@ h1 span{
   padding: 20px 10px;
   margin:10px 4px;
   color: #fff;
-  font-family: sans-serif;
+  font-family: 'Zen Dots', cursive;
   text-transform: uppercase;
   text-align: center;
   position: relative;
