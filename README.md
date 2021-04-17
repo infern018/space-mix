@@ -1,4 +1,4 @@
-# Space Mix
+# 🌠Space Mix
 A simple card matching game based on a space theme, the project is made on Vue3 framewrok with the help of composition API
 
 ## Live Link:
