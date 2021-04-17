@@ -53,6 +53,7 @@ export default {
     })
 
     const restartGame = () => {
+      score.value=0;
       cardList.value = _.shuffle(cardList.value)
 
       cardList.value = cardList.value.map((card, index) => {
