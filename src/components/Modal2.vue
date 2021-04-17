@@ -7,6 +7,8 @@
         <div class="modal2-content">
             <span class="close" @click="handleClickBtn">&times;</span>
             <p>A card matching game made in Vue-3, each card has its similar pair that can be revealed by clicking on it, go ahead, click "START" and see in how many least clicks you can reveal them all! :)</p>
+            <hr>
+            <p class="credit">Made by star trooper <i class="fab fa-galactic-senate"></i> : <a href="https://github.com/infern018/">@infern0</a></p>
         </div>
 
     </div>
@@ -49,11 +51,29 @@ export default {
   border-radius: 10px;
   margin: auto;
   padding: 20px;
-  width: 25%;
+  width: 35%;
   font-size: 18px;
   line-height: 25px;
   word-spacing: 0.4em;
   font-family: 'Zen Dots', cursive;
+}
+
+hr{
+  height: 2px;
+  background-color: cornflowerblue;
+  border:none;
+}
+
+.credit{
+  font-size:15px ;
+}
+
+.credit i{
+  color: rgb(247, 72, 107);
+}
+
+.credit a{
+  color:cornflowerblue;
 }
 
 /* The Close Button */
