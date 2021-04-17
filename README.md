@@ -2,7 +2,7 @@
 A simple card matching game based on a space theme, the project is made on Vue3 framewrok with the help of composition API
 
 ## Live Link:
-[Space-Mix](https://6078307a3ccd3af39c360fdc--quirky-lovelace-ed58f6.netlify.app/#)
+[Space-Mix](https://quirky-lovelace-ed58f6.netlify.app/)
 
 ## Sneak Peek:
 <img width="899" alt="sm1" src="https://user-images.githubusercontent.com/52378712/114870040-53102180-9e15-11eb-9f36-4cd3fcefc5af.png">
